@@ -55,6 +55,15 @@ When installing the PTFE tube from the frame edge to the extruder I checked the 
 
 This printer has a direct drive extruder, slack in tube's filament path before reaching the extruder does not affect print quality versus Bowden configurations where the PTFE tube sits between the extruder and hot-end.
 
+## Slicer settings
+
+I use Cura 5 to slice models. There is no Ghost 6 profile (at the time of writing) so I selected Ghost 5 and modified the print bed size and Z height (255 x 215 x 215 XYZ).
+
+Notible changes to date (PLA):
+
+- Retraction distance: 3.3mm (down from 6.5mm)
+- Minimum extrusion distance: 3mm (down from 10mm)
+
 ## Next
 
 I have some modifications planned and am yet to connect to the printer via serial over USB to pull the firmware settings. I'll update these notes in due course but am happy with the quality of the hardware, particularly at this price point.
