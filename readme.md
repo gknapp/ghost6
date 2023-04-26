@@ -25,6 +25,16 @@ The motherboard is a [Makerbase Robin V3.1](https://www.makerbase.store/products
 
 This board ships running Marlin 2.x but also supports RepRapFirmware (RRF) and Klipper. Firmware images are available from the Makerbase [Nano V3 Github repository](https://github.com/makerbase-mks/MKS-Robin-Nano-V3.X#firmware).
 
+The electronics bay, the noisiest component is the 60mm fan cooling the motherboard. The PSU fan is temperature controlled and only runs when needed.
+
+![A side view of the printer with the metal panel removed to reveal the electronics bay that contains the motherboard, power supply and cabling](images/elec_bay.jpg)
+
+It's encouraging to see the frame has been grounded with a 16AWG earth wire (bottom left).
+
+This is a low profile fan, I forgot to measure it but would estimate 10mm in depth. The noise it emits is exacerbated by it's close proximity to the metal side panel.
+
+![A picture of the offending 60mm 24V fan](images/60mm_noisy_fan.jpg)
+
 ## Hot-end
 
 I dissembled the hot-end enclosure to inspect the heatsink and heat-break dimensions. This printer has a PTFE lined hot-end that runs down to the nozzle. As with other printers like the Ender 3, this limits the print temperatures to 240C as above this the PTFE tube burns.
@@ -63,6 +73,20 @@ Notible changes to date (PLA):
 
 - Retraction distance: 3.3mm (down from 6.5mm)
 - Minimum extrusion distance: 3mm (down from 10mm)
+
+## Upgrades
+
+### Klipper
+
+Before assembly I checked the electronics bay to see if there was sufficient space for a Pi sized board, which there is not. I've only done preparatory work to accommodate adding a single board computer to run klipper.
+
+I bought some rubber spacers to raise the height of the feet. You could print these from TPU but I didn't think it was worth the effort. The top of the feet are 20mm in diameter, secured with an M4 bolt to the frame through the centre.
+
+![Light grey circular rubber spacers, and M4 bolts shown next to a black bumper foot that comes on the Ghost 6](images/rubber_spacers.jpg)
+
+Without modification the bottom clearance is 19mm. I installed 10mm spacers to provide 29mm clearance. Having since received and measured my SBC (Orange Pi Zero 2), it is 17mm in height so 5mm spacers would be sufficient - allowing a few millimetres for a mount.
+
+![A ruler held, end on, to the underside of the Ghost 6 showing 29mm clearance from the table top](images/increased_clearance.jpg)
 
 ## Next
 
