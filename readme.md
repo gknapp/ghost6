@@ -35,6 +35,94 @@ This is a low profile fan, I forgot to measure it but would estimate 10mm in dep
 
 ![A picture of the offending 60mm 24V fan](images/60mm_noisy_fan.jpg)
 
+### Stock firmware
+
+Connecting to the printer via serial console over USB allows us to retrieve the firmware settings. Pulled the following G-code values via Pronterface.
+
+`M115`
+
+```
+FIRMWARE_NAME:Marlin 2.0.9.2 (Nov 11 2022 12:40:55)
+SOURCE_CODE_URL:github.com/MarlinFirmware/Marlin
+PROTOCOL_VERSION:1.0
+MACHINE_TYPE:3D Printer
+EXTRUDER_COUNT:1
+UUID:xxxx-xxxx-xxxx-xxxx-xxxx
+Cap:SERIAL_XON_XOFF:0
+Cap:BINARY_FILE_TRANSFER:0
+Cap:EEPROM:1
+Cap:VOLUMETRIC:1
+Cap:AUTOREPORT_POS:0
+Cap:AUTOREPORT_TEMP:1
+Cap:PROGRESS:0
+Cap:PRINT_JOB:1
+Cap:AUTOLEVEL:0
+Cap:RUNOUT:0
+Cap:Z_PROBE:0
+Cap:LEVELING_DATA:0
+Cap:BUILD_PERCENT:0
+Cap:SOFTWARE_POWER:0
+Cap:TOGGLE_LIGHTS:0
+Cap:CASE_LIGHT_BRIGHTNESS:0
+Cap:EMERGENCY_PARSER:0
+Cap:HOST_ACTION_COMMANDS:0
+Cap:PROMPT_SUPPORT:0
+Cap:SDCARD:1
+Cap:REPEAT:0
+Cap:SD_WRITE:1
+Cap:AUTOREPORT_SD_STATUS:0
+Cap:LONG_FILENAME:0
+Cap:THERMAL_PROTECTION:1
+Cap:MOTION_MODES:0
+Cap:ARCS:1
+Cap:BABYSTEPPING:1
+Cap:CHAMBER_TEMPERATURE:0
+Cap:COOLER_TEMPERATURE:0
+Cap:MEATPACK:0
+```
+
+`M503`
+
+```gcode
+echo:; Linear Units:
+  G21 ; (mm)
+echo:; Temperature Units:
+echo:  M149 C ; Units in Celsius
+echo:; Filament settings (Disabled):
+echo:  M200 S0 D1.75
+echo:; Steps per unit:
+echo:  M92 X160.60 Y160.60 Z800.00 E405.00
+echo:; Max feedrates (units/s):
+echo:  M203 X200.00 Y200.00 Z4.00 E45.00
+echo:; Max Acceleration (units/s2):
+echo:  M201 X1500.00 Y1500.00 Z100.00 E2000.00
+echo:; Acceleration (units/s2) (P<print-accel> R<retract-accel> T<travel-accel>):
+echo:  M204 P1500.00 R3000.00 T2000.00
+echo:; Advanced (B<min_segment_time_us> S<min_feedrate> T<min_travel_feedrate> X<max_x_jerk> Y<max_y_jerk> Z<max_z_jerk> E<max_e_jerk>):
+echo:  M205 B20000.00 S0.00 T0.00 X15.00 Y15.00 Z0.40 E2.00
+echo:; Home offset:
+echo:  M206 X0.00 Y0.00 Z0.00
+echo:; Hotend PID:
+echo:  M301 P11.58 I0.61 D55.36
+echo:; Bed PID:
+echo:echo:  M304 P103.73 I17.06 D420.46
+echo:; Power-loss recovery:
+echo:  M413 S1 ; ON
+```
+
+### PID Tune
+
+While I had a serial console session active, I took the opportunity to PID tune the hot-end and bed.
+
+- Hot-end (200C):  
+`M303 E0 S200 C6 U1`  
+- Bed (60C):  
+`M303 E-1 S60 C8 U1`  
+- Save to EEPROM:  
+`M500`
+
+I encountered some errors after PID tuning using `U1` but the PID values had updated and just required saving (`M500`).
+
 ## Hot-end
 
 I disassembled the hot-end enclosure to inspect the heatsink and heat-break dimensions. This printer has a PTFE lined hot-end that runs down to the nozzle. As with other printers like the Ender 3, this limits the print temperatures to 240C as above this the PTFE tube burns.
@@ -90,4 +178,4 @@ Without modification the bottom clearance is 19mm. I installed 10mm spacers to p
 
 ## Next
 
-I have some modifications planned and am yet to connect to the printer via serial over USB to pull the firmware settings. I'll update these notes in due course but am happy with the quality of the hardware, particularly at this price point.
+I have some modifications planned. I'll update these notes in due course but am happy with the quality of the hardware, particularly at this price point.
