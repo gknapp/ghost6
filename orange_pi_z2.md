@@ -65,7 +65,7 @@ You can do using one of two ways:
 1) Use `orangepi-config` (recommended)
 2) Bash commands
 
-Option one, use `orangepi-config`:
+Option one:
 
 `$ orangepi-config`
 
@@ -76,17 +76,9 @@ Option two, use bash:
 `$ echo "klipper" > /etc/hostname`  
 `$ hostnamectl set-hostname klipper`
 
-Then edit your `hosts` file:
+Then update your `hosts` file to match:
 
-`$ vim /etc/hosts`
-
-As before, we can replace occurrences with:
-
-`:%s/orangepizero2/klipper/`
-
-To save changes and exit vim:
-
-`:x`
+`$ sed -e 's/orangepizero2/klipper/' -i /etc/hosts`
 
 ## Make connecting easier
 
