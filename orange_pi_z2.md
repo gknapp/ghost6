@@ -50,9 +50,9 @@ To save changes and exit vim:
 
 It's good practice not to login as `root`, instead we should create a less privileged account with the ability to elevate it's privileges temporarily via the `sudo` command.
 
-`$ adduser pi`
-`$ passwd pi`
-`$ usermod -aG sudo pi`
+`$ adduser pi`  
+`$ passwd pi`  
+`$ usermod -aG sudo pi`  
 
 ## Change the hostname
 
@@ -73,7 +73,7 @@ Select `Personal`, then the option to change the hostname.
 
 Option two, use bash:
 
-`$ echo "klipper" > /etc/hostname`
+`$ echo "klipper" > /etc/hostname`  
 `$ hostnamectl set-hostname klipper`
 
 Then edit your `hosts` file:
@@ -94,14 +94,14 @@ Rather than remembering an IP address (that may change) to SSH into, we can make
 
 This is easier than it might sound, just install a package called Avahi, an open-source mDNS service:
 
-`$ apt update`
+`$ apt update`  
 `S apt install avahi-daemon`
 
 ## Reduce memory usage
 
 We can save memory by not loading unused services and programs. As we're working on the command line using SSH, we can stop the GUI / Window manager from being loaded on boot:
 
-`$ systemctl set-default multi-user.target`
+`$ systemctl set-default multi-user.target`  
 `$ reboot`
 
 In approximately 30 seconds, you can reconnect via SSH using:
