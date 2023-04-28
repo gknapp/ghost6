@@ -110,6 +110,16 @@ In approximately 30 seconds, you can reconnect via SSH using:
 
 > When you log back in, you'll need to prefix system commands with `sudo`
 
+## Prevent SSH logins as 'root'
+
+Now you have a working user, there's little reason to allow `root` to SSH into your OPi. Especially as the password is known.
+
+`$ sudo sed -e '/PermitRootLogin/ s/^#*/#/' -i /etc/ssh/sshd_config`
+
+Restart the SSH service for config changes to take effect.
+
+`$ sudo systemctl restart ssh`
+
 ## Disable Bluetooth (if unused)
 
 If you know you're not going to use Bluetooth on your OPi Zero 2, you can save memory by disabling the software support using `orangepi-config`, run it and select `Network`:
