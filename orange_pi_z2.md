@@ -60,7 +60,7 @@ My Orange Pi Zero 2 had the following hostname set: `orangepizero2`
 
 We can change that to something shorter or more memorable. As I'm using this to run klipper on my 3D printer, I thought I'd use the inspired name of `klipper`.
 
-You can do using one of two ways:
+You can change it via one of two ways:
 
 1) Use `orangepi-config` (recommended)
 2) Bash commands
