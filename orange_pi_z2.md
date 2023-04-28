@@ -51,7 +51,7 @@ To save changes and exit vim:
 It's good practice not to login as `root`, instead we should create a less privileged account with the ability to elevate it's privileges temporarily via the `sudo` command.
 
 `$ adduser pi`
-
+`$ passwd pi`
 `$ usermod -aG sudo pi`
 
 ## Change the hostname
