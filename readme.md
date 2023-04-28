@@ -37,7 +37,7 @@ This is a low profile fan, I forgot to measure it but would estimate 10mm in dep
 
 ### Stock firmware
 
-Connecting to the printer via serial console over USB allows us to retrieve the firmware settings. Pulled the following G-code values via Pronterface.
+Connecting to the printer via serial console over USB allows us to retrieve the firmware settings. I used Pronterface as a serial terminal client.
 
 `M115`
 
