@@ -31,9 +31,17 @@ The electronics bay, the noisiest component is the 60mm fan cooling the motherbo
 
 It's encouraging to see the frame has been grounded with a 16AWG earth wire (bottom left).
 
-This is a low profile fan, I forgot to measure it but would estimate 10mm in depth. The noise it emits is exacerbated by it's close proximity to the metal side panel.
+This is a low profile [6010 fan](https://3dflyingbear.com/collections/ghost-6-parts/products/ball-bearing-fan-6010-for-3d-printer-ghost-6-5-4s-4). The noise it emits is exacerbated by it's close proximity to the metal side panel.
 
 ![A picture of the offending 60mm 24V fan](images/60mm_noisy_fan.jpg)
+
+Ghost 6 [wiring diagram (PDF)](https://drive.google.com/drive/folders/1w9E5SNaONkKEqfmt8eS9ygdIeusIUjcJ), provided by FlyingBear:
+
+![Diagram of Ghost 6 components and how they're wired from the motherboard](images/wiring-diagram.png)
+
+A closer look at the MKS Nano4 V3.1 wiring:
+
+![Photo of the MKS motherboard wired up](images/mks_nano4_v31.jpg)
 
 ### Stock firmware
 
@@ -109,6 +117,8 @@ echo:echo:  M304 P103.73 I17.06 D420.46
 echo:; Power-loss recovery:
 echo:  M413 S1 ; ON
 ```
+
+> I was **not** able to read or set the driver current with `M906` ([Marlin docs](https://marlinfw.org/docs/gcode/M906.html)), most likely because the MKS Nano4 board uses TMC-2225 stepper drivers that aren't supported. The stock firmware returns 'Unknown command'.
 
 ### PID Tune
 
