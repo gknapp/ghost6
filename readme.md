@@ -174,6 +174,12 @@ Notible changes to date (PLA):
 
 ## Upgrades
 
+### Hot-end
+
+My [TriangleLabs CHC hot-end](https://www.aliexpress.com/item/1005002781227348.html) and [T-V6 hardened steel nozzle](https://www.aliexpress.com/item/4000974838587.html) has arrived, along with two (just in case) [Aokin bi-metal heat breaks](https://www.aliexpress.com/item/1005004234162702.html). Assembled this weighs 18g. When I install this upgrade I will weigh the original heat block and include it here.
+
+![CHC hot-end with black hardened steel nozzle installed placed on some digital scales reading 18 grams](images/hot-end-upgrade.jpg)
+
 ### Klipper
 
 Before assembly I checked the electronics bay to see if there was sufficient space for a Pi sized board, which there is not. I've only done preparatory work to accommodate adding a single board computer to run klipper.
