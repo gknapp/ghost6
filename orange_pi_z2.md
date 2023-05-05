@@ -12,7 +12,9 @@ Once power and ethernet are connected, you can find the Orange Pi Z2's IP addres
 Username: `root`  
 Password: `orangepi`
 
-`$ ssh root@ip.from.router`
+```bash
+ssh root@ip.from.router
+```
 
 After pressing [Enter] you'll be prompted for the password.
 
@@ -25,7 +27,9 @@ When I received my board, the repositories were set to Chinese servers local to 
 
 When you've selected a local mirror server, note the hostname.
 
-`$ vim /etc/apt/sources.list`
+```bash
+vim /etc/apt/sources.list
+```
 
 Enter:
 
@@ -43,20 +47,22 @@ To save changes and exit vim:
 
 ## Update system packages
 
-`$ apt update`  
-`$ apt upgrade`
+```bash
+apt update && apt upgrade
+```
 
 ## Add a new user
 
 It's good practice not to login as `root`, instead we should create a less privileged account with the ability to elevate it's privileges temporarily via the `sudo` command.
 
-`$ adduser pi`  
-`$ passwd pi`  
-`$ usermod -aG sudo pi`  
+```bash
+adduser pi && passwd pi
+usermod -aG sudo pi
+```
 
 ## Change the hostname
 
-My Orange Pi Zero 2 had the following hostname set: `orangepizero2`
+My Orange Pi Zero 2 was delivered with the hostname: `orangepizero2`
 
 We can change that to something shorter or more memorable. As I'm using this to run klipper on my 3D printer, I thought I'd use the inspired name of `klipper`.
 
@@ -67,18 +73,24 @@ You can change it via one of two ways:
 
 Option one:
 
-`$ orangepi-config`
+```bash
+orangepi-config
+```
 
 Select `Personal`, then the option to change the hostname.
 
 Option two, use bash:
 
-`$ echo "klipper" > /etc/hostname`  
-`$ hostnamectl set-hostname klipper`
+```bash
+echo "klipper" > /etc/hostname
+hostnamectl set-hostname klipper
+```
 
 Then update your `hosts` file to match:
 
-`$ sed -e 's/orangepizero2/klipper/' -i /etc/hosts`
+```bash
+sed -e 's/orangepizero2/klipper/' -i /etc/hosts
+```
 
 ## Make connecting easier
 
@@ -86,19 +98,25 @@ Rather than remembering an IP address (that may change) to SSH into, we can make
 
 This is easier than it might sound, just install a package called Avahi, an open-source mDNS service:
 
-`$ apt update`  
-`S apt install avahi-daemon`
+```bash
+apt update
+apt install avahi-daemon
+```
 
 ## Reduce memory usage
 
 We can save memory by not loading unused services and programs. As we're working on the command line using SSH, we can stop the GUI / Window manager from being loaded on boot:
 
-`$ systemctl set-default multi-user.target`  
-`$ reboot`
+```bash
+systemctl set-default multi-user.target
+reboot
+```
 
 In approximately 30 seconds, you can reconnect via SSH using:
 
-`> ssh pi@klipper.local`
+```bash
+ssh pi@klipper.local
+```
 
 > When you log back in, you'll need to prefix system commands with `sudo`
 
@@ -106,20 +124,40 @@ In approximately 30 seconds, you can reconnect via SSH using:
 
 Now you have a working user, there's little reason to allow `root` to SSH into your OPi. Especially as the password is known.
 
-`$ sudo sed -e '/PermitRootLogin/ s/^#*/#/' -i /etc/ssh/sshd_config`
+```bash
+sudo sed -e '/PermitRootLogin/ s/^#*/#/' -i /etc/ssh/sshd_config
+```
 
 Restart the SSH service for config changes to take effect.
 
-`$ sudo systemctl restart ssh`
+```bash
+sudo systemctl restart ssh
+```
 
-## Disable Bluetooth (if unused)
-
-If you know you're not going to use Bluetooth on your OPi Zero 2, you can save memory by disabling the software support using `orangepi-config`, run it and select `Network`:
-
-`$ sudo orangepi-config`
+## Memory usage
 
 You can see the available memory using the command:
 
-`$ free`
+```bash
+free
+```
 
-That's it for now. If you want to further reduce memory usage, and you don't use WiFi on your OPi Zero 2, look into disabling `wpa_supplicant` via systemd (`systemctl`).
+## Reduce memory usage: Disable Bluetooth
+
+If you're not going to use Bluetooth you can save memory by disabling the software support using `orangepi-config`, run it and select `Network`:
+
+```bash
+sudo orangepi-config
+```
+
+## Reduce memory usage: Disabling WiFi
+
+If you want to further reduce memory usage, you can disable `wpa_supplicant` via systemd and turn off `wlan0` in Network Manager.
+
+```bash
+sudo systemctl stop wpa_supplicant
+sudo systemctl disable wpa_supplicant && sudo systemctl mask wpa_supplicant
+sudo nmcli radio wifi off
+```
+
+I hope this information proved useful.
