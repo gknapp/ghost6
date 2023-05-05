@@ -150,7 +150,7 @@ If you're not going to use Bluetooth you can save memory by disabling the softwa
 sudo orangepi-config
 ```
 
-## Reduce memory usage: Disabling WiFi
+## Reduce memory usage: Disable WiFi
 
 If you want to further reduce memory usage, you can disable `wpa_supplicant` via systemd and turn off `wlan0` in Network Manager.
 
