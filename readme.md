@@ -188,7 +188,7 @@ I bought some rubber spacers to raise the height of the feet. You could print th
 
 ![Light grey circular rubber spacers, and M4 bolts shown next to a black bumper foot that comes on the Ghost 6](images/rubber_spacers.jpg)
 
-Without modification the bottom clearance is 19mm. I installed 10mm spacers to provide 29mm clearance. Having since received and measured my SBC (Orange Pi Zero 2), it is 17mm in height so 5mm spacers would be sufficient - allowing a few millimetres for a mount.
+Without modification the bottom clearance is 19mm. My [Orange Pi Zero 2](orange_pi_z2.md) is 17mm in height, 5mm spacers would be sufficient to accommodate the OPi but as we need to use GPIO UART pins, the DuPont connectors and wire require additional clearance. Since taking this photo I've installed another 5mm spacer for a total of 15mm.
 
 ![A ruler held, end on, to the underside of the Ghost 6 showing 29mm clearance from the table top](images/increased_clearance.jpg)
 
