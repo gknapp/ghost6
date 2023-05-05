@@ -135,19 +135,19 @@ I encountered some errors after PID tuning using `U1` but the PID values had upd
 
 ## Hot-end
 
-I disassembled the hot-end enclosure to inspect the heatsink and heat-break dimensions. This printer has a PTFE lined hot-end that runs down to the nozzle. As with other printers like the Ender 3, this limits the print temperatures to 240C as above this the PTFE tube burns.
+I disassembled the hot-end enclosure to inspect the heat sink and heat-break dimensions. This printer has a PTFE lined hot-end that runs down to the nozzle. As with other printers like the Ender 3, this limits the print temperatures to 240C as above this the PTFE tube burns.
 
-The heat-break can be swapped out. It is a [Chimera](https://www.aliexpress.com/item/1005001728155269.html) style, M6 threaded bottom that screws into the heater block and a smooth J-head M7 throat that inserts into the cold-end heatsink (Aokin sell a cheaper [bi-metal TA-C smooth short](https://www.aliexpress.com/item/1005004234162702.html) variant).
+The heat-break can be swapped out. It is a [Chimera](https://www.aliexpress.com/item/1005001728155269.html) style, M6 threaded bottom that screws into the heater block and a smooth J-head M7 throat that inserts into the cold-end heat sink (Aokin sell a cheaper [bi-metal TA-C smooth short](https://www.aliexpress.com/item/1005004234162702.html) variant).
 
-![View of digital calipers and a de-installed cold-end heatsink on a desk, shown from the underside with the filament path visible where a heatbreak could be inserted](images/cold_end.jpg)
+![View of digital calipers and a de-installed cold-end heat sink on a desk, shown from the underside with the filament path visible where a heat-break could be inserted](images/cold_end.jpg)
 
-The heat-sink attachment to the yellow plastic hot-end enclosure appears bespoke. If you purchase an aftermarket alternative, you may need to drill and tap some M3 holes in the top of the heatsink near the perimeter to install it.
+The heat sink attachment in the yellow plastic hot-end enclosure appears bespoke. If you purchase an aftermarket alternative, you may need to drill and tap some M3 holes in the top of the heat sink near the perimeter to install it.
 
-![Digital calipers showing a spacing of 12.34mm between M3 bolts screwed into the top of the aluminium cold-end heatsink either side of the filament path hole in the centre](images/heatsink_screws.jpg)
+![Digital calipers showing a spacing of 12.34mm between M3 bolts screwed into the top of the aluminium cold-end heat sink either side of the filament path hole in the centre](images/heatsink_screws.jpg)
 
 ## Z Stop
 
-I found my Z stop microswitch was not level from factory. This was easily remedied as it is mounted on a plate fixed with two bolts (circled in red), screwed into the rear panel of the frame.
+I found my Z stop micro-switch was not level from factory. This was easily remedied as it is mounted on a plate fixed with two bolts (circled in red), screwed into the rear panel of the frame.
 
 ![A view across the print bed showing the rear inside of the Ghost 6 where the Z stop switch is mounted between the Z axis lead screw and left hand side linear rod. The Z height stop position can be adjusted by rotating a ridged plastic cap mounted on a screw enclosed by a spring and washer](images/z_stop.jpg)
 
@@ -167,7 +167,7 @@ This printer has a direct drive extruder, slack in tube's filament path before r
 
 I use Cura 5 to slice models. There is no Ghost 6 profile (at the time of writing) so I selected Ghost 5 and modified the print bed size and Z height (255 x 215 x 215 XYZ).
 
-Notible changes to date (PLA):
+Notable changes to date (PLA):
 
 - Retraction distance: 3.3mm (down from 6.5mm)
 - Minimum extrusion distance: 3mm (down from 10mm)
@@ -182,7 +182,7 @@ My [TriangleLabs CHC hot-end](https://www.aliexpress.com/item/1005002781227348.h
 
 ### Klipper
 
-Before assembly I checked the electronics bay to see if there was sufficient space for a Pi sized board, which there is not. I've only done preparatory work to accommodate adding a single board computer to run klipper.
+Before assembly I checked the electronics bay to see if there was sufficient space for a Pi sized board, which there is not. I've only done preparatory work to accommodate adding a [single board computer](orange_pi_z2.md) to run klipper.
 
 I bought some rubber spacers to raise the height of the feet. You could print these from TPU but I didn't think it was worth the effort. The top of the feet are 20mm in diameter, secured with an M4 bolt to the frame through the centre.
 
