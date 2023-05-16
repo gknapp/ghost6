@@ -179,23 +179,25 @@ Notable changes to date (PLA):
 
 ## Upgrades
 
+### Klipper
+
+Before assembly I checked the electronics bay to see if there was sufficient space for a Pi sized board, which there is not. I've only done preparatory work to accommodate adding a [single board computer](orange_pi_z2.md) to run klipper.
+
+Without modification the bottom clearance is 19mm.
+
+### Relocate the Power Supply
+
+To create space in the electronics compartment, the PSU can be relocated to the underside of the printer. This requires taller feet, those TPU feet shown below are temporary. I plan to print a voron style skirt for my Ghost 6 and raise the machine by 80~90mm.
+
+The Ghost 6 ships with four holes in the bottom plate, these can accommodate M6 bolts allowing DIN rails to be attached. I installed mine across the underside. This allows equipment to be installed without adhesives or cutting holes in the original frame. The picture below shows the left hand side of the Ghost 6, with the door facing to the right.
+
+![Underside of the Ghost 6 showing two DIN rails attached with M6 bolts](images/din_rails.jpg)
+
 ### Hot-end
 
 My [TriangleLabs CHC hot-end](https://www.aliexpress.com/item/1005002781227348.html) and [T-V6 hardened steel nozzle](https://www.aliexpress.com/item/4000974838587.html) has arrived, along with two (just in case) [Aokin bi-metal heat breaks](https://www.aliexpress.com/item/1005004234162702.html). Assembled this weighs 18g. When I install this upgrade I will weigh the original heat block and include it here.
 
 ![CHC hot-end with black hardened steel nozzle installed placed on some digital scales reading 18 grams](images/hot-end-upgrade.jpg)
-
-### Klipper
-
-Before assembly I checked the electronics bay to see if there was sufficient space for a Pi sized board, which there is not. I've only done preparatory work to accommodate adding a [single board computer](orange_pi_z2.md) to run klipper.
-
-I bought some rubber spacers to raise the height of the feet. You could print these from TPU but I didn't think it was worth the effort. The top of the feet are 20mm in diameter, secured with an M4 bolt to the frame through the centre.
-
-![Light grey circular rubber spacers, and M4 bolts shown next to a black bumper foot that comes on the Ghost 6](images/rubber_spacers.jpg)
-
-Without modification the bottom clearance is 19mm. My [Orange Pi Zero 2](orange_pi_z2.md) is 17mm in height, 5mm spacers would be sufficient to accommodate the OPi but as we need to use GPIO UART pins, the DuPont connectors and wire require additional clearance. Since taking this photo I've installed another 5mm spacer for a total of 15mm.
-
-![A ruler held, end on, to the underside of the Ghost 6 showing 29mm clearance from the table top](images/increased_clearance.jpg)
 
 ## Next
 
