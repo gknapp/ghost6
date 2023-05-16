@@ -7,9 +7,12 @@ This 3D printer is an affordable Core XY option. I documented my assembly steps 
 **Sections**
 
 - [Motherboard](#motherboard)
+  - [Firmware](#stock-firmware)
+  - [PID tune](#pid-tune)
 - [Hot-end](#hot-end)
 - [Z Stop](#z-stop)
 - [PTFE Tube](#ptfe-tube)
+- [Upgrades](#upgrades)
 
 [Nathan Builds Robots](https://www.youtube.com/@NathanBuildsRobots) posted a [review of this machine](https://www.youtube.com/watch?v=OnHAltxwU58), including some upgrades to the power connections and heat-break. I used this as a springboard of items to check when assembling my own Ghost 6.
 
@@ -136,6 +139,8 @@ I encountered some errors after PID tuning using `U1` but the PID values had upd
 ## Hot-end
 
 I disassembled the hot-end enclosure to inspect the heat sink and heat-break dimensions. This printer has a PTFE lined hot-end that runs down to the nozzle. As with other printers like the Ender 3, this limits the print temperatures to 240C as above this the PTFE tube burns.
+
+I have tested the stock extruder and hot-end [flow rate performance](flow.md).
 
 The heat-break can be swapped out. It is a [Chimera](https://www.aliexpress.com/item/1005001728155269.html) style, M6 threaded bottom that screws into the heater block and a smooth J-head M7 throat that inserts into the cold-end heat sink (Aokin sell a cheaper [bi-metal TA-C smooth short](https://www.aliexpress.com/item/1005004234162702.html) variant).
 
