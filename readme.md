@@ -200,3 +200,8 @@ Without modification the bottom clearance is 19mm. My [Orange Pi Zero 2](orange_
 ## Next
 
 I have some modifications planned. I'll update these notes in due course but am happy with the quality of the hardware, particularly at this price point.
+
+# Useful Ghost 6 repositories
+
+- [Tom Tomich's Ghost 6 repository](/Tombraider2006/klipperFB6) (Russian)
+- [Technarrus klipper config (Orange Pi 3 LTS)](/Technarrus/Klipper_FBG6) (Russian)
