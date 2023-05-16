@@ -8,6 +8,8 @@ across three printing temperatures: 200˚C, 210˚C and 220˚C.
 This is replicates method used by [CNC Kitchen](https://www.youtube.com/watch?v=0xRtypDjNvI), 
 weighing the extruded PLA and comparing it to the requested flow rate in mm<sup>3</sup>/s.
 
+![Grid of flow rate tests on the Ghost 6 build surface](images/flow_test.jpg)
+
 Flow rate requested and weight extruded (g) using a brass 0.4mm nozzle.
 
 | Temp | 6 | 8 | 10 | 12 | 14 | 16 | 18 | 20 | 22 | 24 | 26 |
