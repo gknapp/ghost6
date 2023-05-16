@@ -203,5 +203,5 @@ I have some modifications planned. I'll update these notes in due course but am 
 
 # Useful Ghost 6 repositories
 
-- [Tom Tomich's Ghost 6 repository](/Tombraider2006/klipperFB6) (Russian)
-- [Technarrus klipper config (Orange Pi 3 LTS)](/Technarrus/Klipper_FBG6) (Russian)
+- [Tom Tomich's Ghost 6 repository](https://github.com/Tombraider2006/klipperFB6) (Russian)
+- [Technarrus klipper config (Orange Pi 3 LTS)](https://github.com/Technarrus/Klipper_FBG6) (Russian)
