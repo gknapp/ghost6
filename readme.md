@@ -189,15 +189,26 @@ Without modification the bottom clearance is 19mm.
 
 To create space in the electronics compartment, the PSU can be relocated to the underside of the printer. This requires taller feet, those TPU feet shown below are temporary. I plan to print a voron style skirt for my Ghost 6 and raise the machine by 80~90mm.
 
-The Ghost 6 ships with four holes in the bottom plate, these can accommodate M6 bolts allowing DIN rails to be attached. I installed mine across the underside. This allows equipment to be installed without adhesives or cutting holes in the original frame. The picture below shows the left hand side of the Ghost 6, with the door facing to the right.
+The Ghost 6 ships with four holes in the bottom plate, these can accommodate M6 bolts allowing DIN rails to be attached. I installed mine across the underside. This allows components to be installed without adhesives or cutting holes in the original frame. The picture below shows the left hand side of the Ghost 6, with the door facing to the right.
 
 ![Underside of the Ghost 6 showing two DIN rails attached with M6 bolts](images/din_rails.jpg)
 
-### Hot-end
+### Bi-metal heat break and hardened nozzle
 
-My [TriangleLabs CHC hot-end](https://www.aliexpress.com/item/1005002781227348.html) and [T-V6 hardened steel nozzle](https://www.aliexpress.com/item/4000974838587.html) has arrived, along with two (just in case) [Aokin bi-metal heat breaks](https://www.aliexpress.com/item/1005004234162702.html). Assembled this weighs 18g. When I install this upgrade I will weigh the original heat block and include it here.
+The original hot-end assembly weighs 39g, the lower X carriage weighs 97.7g, totalling ~137g not including the extruder (that probably weighs more) and top assembly housing the linear bearings.
 
-![CHC hot-end with black hardened steel nozzle installed placed on some digital scales reading 18 grams](images/hot-end-upgrade.jpg)
+![Stock hot-end assembly including cold-end heat sink, PTFE tube, heater block, heater cartridge, thermistor and brass nozzle](images/hotend_assembly.jpg)
+<p style="text-align: center">The hot-end assembly</p>
+
+![Injection moulded carriage placed on a scale reading 97.69g](images/lower_carriage.jpg)
+<p style="text-align: center">Lower X carriage that houses a break out board, fans and the hot-end assembly</p>
+
+I'll need to retain the cold-end heat sink, the top is attached via custom placed M3 threaded holes instead of a J-head like many V6 hot-end printers.
+
+![Cold-end heat sink placed on scales reading 15.9g](images/heatsink_weight.jpg)
+
+My [TriangleLabs CHC hot-end](https://www.aliexpress.com/item/1005002781227348.html) with nozzle weighs 20g. This upgrade will save a negligible 3g (36g vs 39g), allow print temperatures above 240C without burning the PTFE tube and be able to print abrasive materials without wearing the nozzle.
+
 
 ## Next
 
