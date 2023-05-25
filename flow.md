@@ -10,7 +10,7 @@ weighing the extruded PLA and comparing it to the requested flow rate in mm<sup>
 
 ![Grid of flow rate tests on the Ghost 6 build surface](images/flow_test.jpg)
 
-When fitting a CHC I also switched the nozzle from brass to tungsten carbide to print abrasive filament. Carbide nozzle have approx 80% of the thermal conductivity of brass, and slightly require higher printing temps.
+When fitting a CHC I also switched the nozzle from brass to tungsten carbide to print abrasive filament. Carbide nozzles have approx 80% of the thermal conductivity of brass, and benefit from slightly higher printing temperatures.
 
 Flow rate requested and weight extruded (g) using a brass 0.4mm nozzle.
 
