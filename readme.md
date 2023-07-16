@@ -174,24 +174,33 @@ I use Cura 5 to slice models. There is no Ghost 6 profile (at the time of writin
 
 Notable changes to date (PLA):
 
-- Retraction distance: 3.3mm (down from 6.5mm)
-- Minimum extrusion distance: 3mm (down from 10mm)
+- Retraction distance: 0.3mm (down from 6.5mm)
+- Minimum extrusion distance: 1mm (down from 10mm)
+
+Not a slicer setting but a Marlin change, disable power loss recovery that writes to the SD card at every layer, causing pauses during printing: `M413 S0`
 
 ## Upgrades
 
-### Klipper
-
-Before assembly I checked the electronics bay to see if there was sufficient space for a Pi sized board, which there is not. I've only done preparatory work to accommodate adding a [single board computer](orange_pi_z2.md) to run klipper.
-
-Without modification the bottom clearance is 19mm.
-
 ### Relocate the Power Supply
 
-To create space in the electronics compartment, the PSU can be relocated to the underside of the printer. This requires taller feet, those TPU feet shown below are temporary. I plan to print a voron style skirt for my Ghost 6 and raise the machine by 80~90mm.
+To create space in the electronics compartment, the PSU can be relocated to the underside of the printer. This requires taller feet, those TPU feet shown below are temporary. I plan to print a voron style skirt for my Ghost 6 and raise the printer by 60~70mm.
+
+Without modification the bottom clearance is 19mm.
 
 The Ghost 6 ships with four holes in the bottom plate, these can accommodate M6 bolts allowing DIN rails to be attached. I installed mine across the underside. This allows components to be installed without adhesives or cutting holes in the original frame. The picture below shows the left hand side of the Ghost 6, with the door facing to the right.
 
 ![Underside of the Ghost 6 showing two DIN rails attached with M6 bolts](images/din_rails.jpg)
+Initially I installed two DIN rails. Only the power supply needed relocating, the remaining components can live in the electronics compartment.
+
+![Ghost 6 placed on it's rear panel to show the underside of the printer. A DIN rail is attached to the frame and a PSU is mounted on the rail. Temporary blue TPU feet have been installed to provide sufficient clearance for the PSU](images/psu_relocate.jpg)
+
+I happened to have a spare Meanwell LRS 350 PSU, from a previous printer, that I'd modified with a 90mm noctua fan for near silent operation.
+
+### Klipper
+
+
+
+Having moved my power supply to the underside of the printer, I could then accommodate a [single board computer](orange_pi_z2.md) to host klipper. I have posted my [Ghost 6 klipper configuration](./klipper.md) for others to use. Please run your own PID, retraction and pressure advance calibration.
 
 ### Bi-metal heat break and hardened nozzle
 
@@ -209,10 +218,19 @@ I'll need to retain the cold-end heat sink, the top is attached via custom place
 
 My [TriangleLabs CHC hot-end](https://www.aliexpress.com/item/1005002781227348.html) with nozzle weighs 20g. This upgrade will save a negligible 3g (36g vs 39g), allow print temperatures above 240C without burning the PTFE tube and be able to print abrasive materials without wearing the nozzle.
 
+### Acrylic side panels
+
+Not a print quality upgrade but a quality of life one. I opted for light smoke acrylic side panels to increase the light inside the printer and to provide an easier view of print progress.
+
+![Ghost 6 with smoked acrylic side panels and the chamber flood light turned on](images/acrylic_sides.jpg)
+
+As you can see from the photo, my panels are perhaps 1mm too narrow. If ordering your own, I recommend 342 x 315mm sized sheets. I drilled M3 (3.5mm drill) holes and attached using pre-existing mount points.
+
+A tip position your drill points is to remove your metal side panels and lay your acrylic on it to mark the hole locations.
 
 ## Next
 
-I have some modifications planned. I'll update these notes in due course but am happy with the quality of the hardware, particularly at this price point.
+I have some other modifications planned. I'll update these notes in due course but am happy with the quality of the hardware, particularly at this price point.
 
 # Useful Ghost 6 repositories
 
