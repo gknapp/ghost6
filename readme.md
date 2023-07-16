@@ -226,7 +226,7 @@ Not a print quality upgrade but a quality of life one. I opted for light smoke a
 
 As you can see from the photo, my panels are perhaps 1mm too narrow. If ordering your own, I recommend 342 x 315mm sized sheets. I drilled M3 (3.5mm drill) holes and attached using pre-existing mount points.
 
-A tip position your drill points is to remove your metal side panels and lay your acrylic on it to mark the hole locations.
+Tip: to position your drill points, remove your metal side panels and lay your acrylic on it to mark the hole locations.
 
 ## Next
 

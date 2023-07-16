@@ -64,7 +64,7 @@ max_extrude_only_distance: 600
 microsteps: 32
 min_extrude_temp: 180
 min_temp: 0
-max_temp: 290
+max_temp: 290 # For stock hot-end, use 240 here
 nozzle_diameter: 0.600
 pressure_advance: 0.075
 rotation_distance: 15.6444
@@ -74,7 +74,7 @@ sensor_type: EPCOS 100K B57560G104F
 step_pin: PD6
 
 [firmware_retraction]
-retract_length: 0.3
+retract_length: 0.6
 retract_speed: 45
 unretract_extra_length: 0
 unretract_speed: 45
@@ -108,7 +108,7 @@ screw4_name: Back Left
 speed: 150
 
 [mcu]
-serial: /dev/ttyS5
+serial: /dev/ttyS5 # UART connection
 restart_method: command
 
 [printer]
