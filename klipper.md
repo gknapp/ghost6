@@ -2,9 +2,50 @@
 
 ![Klipper dashboard](./images/klipper_dash.png)
 
+> **Note:** I don't run an ABL probe or a webcam.
+
+This configuration assumes the following directory structure (in `/home/pi` but could be any directory):
+
+```bash
+├── ghost6
+│   ├── backup
+│   ├── certs
+│   ├── comms
+│   ├── config
+│   ├── database
+│   ├── gcodes
+│   ├── logs
+│   ├── mainsail
+│   └── systemd
+├── klipper
+│   ├── config
+│   ├── docs
+│   ├── klippy
+│   ├── lib
+│   ├── out
+│   ├── scripts
+│   ├── src
+│   └── test
+├── klippy-env
+│   ├── bin
+│   ├── include
+│   └── lib
+├── moonraker
+│   ├── docs
+│   ├── moonraker
+│   ├── scripts
+│   └── tests
+└── moonraker-env
+    ├── bin
+    └── lib
+```
+
 ### printer.cfg
 ```yaml
 [display_status]
+
+[gcode_arcs]
+# Arc welder support
 
 [pause_resume]
 
@@ -61,13 +102,13 @@ enable_pin: !PB3
 filament_diameter: 1.750
 heater_pin: PE5
 max_extrude_only_distance: 600
+max_extrude_cross_section: 14.4
 microsteps: 32
 min_extrude_temp: 180
 min_temp: 0
-max_temp: 290 # For stock hot-end, use 240 here
-nozzle_diameter: 0.600
-pressure_advance: 0.075
-rotation_distance: 15.6444
+max_temp: 290 # use 240 here for stock hot-end
+nozzle_diameter: 0.600 # stock nozzle = 0.4
+rotation_distance: 15.332
 sensor_pin: PC1
 # sensor_type: ATC Semitec 104GT-2
 sensor_type: EPCOS 100K B57560G104F
@@ -77,7 +118,7 @@ step_pin: PD6
 retract_length: 0.6
 retract_speed: 45
 unretract_extra_length: 0
-unretract_speed: 45
+unretract_speed: 40
 
 [heater_fan nozzle_fan]
 pin: PC14
@@ -87,7 +128,7 @@ heater_temp: 50
 fan_speed: 1.0
 
 [fan]
-pin: PB1 # fan2
+pin: PB1 # Part cooling
 
 [heater_bed]
 heater_pin: PA0
@@ -113,9 +154,9 @@ restart_method: command
 
 [printer]
 kinematics: corexy
-max_velocity: 400
-max_accel: 4000
-max_accel_to_decel: 2000
+max_velocity: 250
+max_accel: 3000
+max_accel_to_decel: 1500
 max_z_velocity: 25
 max_z_accel: 100
 
@@ -143,6 +184,7 @@ white_pin: !PE6
 # EXP1 / EXP2 (display) pins
 ########################################
 
+# Display not functional with klipper
 [board_pins]
 aliases:
     # EXP1 header
@@ -257,58 +299,69 @@ gcode:
     G1 E-90 F1000
     RESTORE_GCODE_STATE NAME=M600_state
 
-[gcode_macro unload]
-description: Unloads Filament from extruder
+[gcode_macro load]
+description: Loads filament
 gcode:
   {% set cfg = printer.configfile.settings %}
   {% if printer.extruder.temperature < cfg.extruder.min_extrude_temp %}
-    {action_respond_info("Hot-end temperature too low")}
+    M104 S190
+    {action_respond_info("Hot-end temperature too low, heating to 190C ...")}
   {% else %}
-    SAVE_GCODE_STATE NAME=UNLOAD_state
-    {% set Z = params.Z|default(40)|int %}
-    {% set axis_max = printer.toolhead.axis_maximum %}
-    {% set pos = printer.toolhead.position %}
- 
-    {% set z_diff = axis_max.z - pos.z %}
-    {% set z_safe_lift = [ Z, z_diff ] | min%}
- 
-    G91                   # relative positioning
-    G0 Z{ z_safe_lift }
-    # Reset extruder position
-    G92 E0
-    G1 E5.0 F300        # extrude a little
-    G1 E-55 F{ 10 * 60 } # perform the unload
-    G1 E-55 F{ 5 * 60 }   # finish the unload
-    RESTORE_GCODE_STATE NAME=UNLOAD_state
+    SAVE_GCODE_STATE NAME=LOAD_state
+    G91 # relative movement
+    {% if printer.toolhead.position.z|float < 25 %} # if bed closer than 25mm
+      {% if printer.toolhead.homed_axes != "z" %}   # conditionally home Z
+        G28 Z 
+      {% endif %}
+      G90 # absolute movement
+      G1 Z25 F1200 # Move bed to 25mm below nozzle
+      G91 # relative movement
+    {% endif %}
+    G1 E80 F{ 5 * 60 }    # extrude
+    G4 P1000              # dwell 1s
+    G1 E50.0 F{ 5 * 60 }  # extrude a little more
+    RESTORE_GCODE_STATE NAME=LOAD_state
   {% endif %}
  
 [gcode_macro purge]
-description: Extrudes filament, used to clean out previous filament
+description: Extrudes filament to purge previous filament
 gcode:
   {% set cfg = printer.configfile.settings %}
   {% if printer.extruder.temperature < cfg.extruder.min_extrude_temp %}
-    {action_respond_info("Hot-end temperature too low")}
+    M104 S190
+    {action_respond_info("Hot-end temperature too low, heating to 190C ...")}
   {% else %}
   {% set PURGE_AMOUNT = params.PURGE_AMOUNT|default(40)|float %}
     SAVE_GCODE_STATE NAME=PURGE_state
-    G91                   # relative coords
-    G1 E{PURGE_AMOUNT} F{ 5 * 60 }  # purge
+    G91 # relative movement
+    G1 E{PURGE_AMOUNT} F{ 5 * 60 } # purge
     RESTORE_GCODE_STATE NAME=PURGE_state
   {% endif %}
- 
-[gcode_macro load]
-description: Loads filament into the extruder
+
+[gcode_macro unload]
+description: Unloads filament
 gcode:
   {% set cfg = printer.configfile.settings %}
   {% if printer.extruder.temperature < cfg.extruder.min_extrude_temp %}
-    {action_respond_info("Extruder temperature too low")}
+    M104 S190
+    {action_respond_info("Hot-end temperature too low, heating to 190C ...")}
   {% else %}
-    SAVE_GCODE_STATE NAME=LOAD_state
-    G91                   # Relative coords
-    G1 E50 F{ 5 * 60 }  # extrude
-    G4 P{ 0.9 * 1000 }    # dwell (ms)
-    G1 E25.0 F{ 5 * 60 }  # extrude a little more
-    RESTORE_GCODE_STATE NAME=LOAD_state
+    SAVE_GCODE_STATE NAME=UNLOAD_state
+    G91 # relative movement
+    {% if printer.toolhead.position.z|float < 25 %} # if bed closer than 25mm
+      {% if printer.toolhead.homed_axes != "z" %}   # conditionally home Z
+        G28 Z 
+      {% endif %}
+      G90 # absolute movement
+      G1 Z25 F1200 # Move bed to 25mm below nozzle
+      G91 # relative movement
+   {% endif %}
+    # Reset extruder position
+    G92 E0
+    G1 E5.0 F300          # extrude a little
+    G1 E-55 F{ 10 * 60 }  # perform the unload
+    G1 E-55 F{ 5 * 60 }   # finish the unload
+    RESTORE_GCODE_STATE NAME=UNLOAD_state
   {% endif %}
 
 [gcode_macro PID_Hotend]
@@ -323,6 +376,9 @@ gcode:
 
 [gcode_macro TRAM_BED]
 gcode:
+  {% if printer.toolhead.homed_axes != "xyz" %}
+    G28
+  {% endif %}
   BED_SCREWS_ADJUST
 ```
 
