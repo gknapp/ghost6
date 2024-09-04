@@ -13,6 +13,7 @@ This 3D printer is an affordable Core XY option. I documented my assembly steps 
 - [Z Stop](#z-stop)
 - [PTFE Tube](#ptfe-tube)
 - [Upgrades](#upgrades)
+  - [Klipper](#klipper)
 
 [Nathan Builds Robots](https://www.youtube.com/@NathanBuildsRobots) posted a [review of this machine](https://www.youtube.com/watch?v=OnHAltxwU58), including some upgrades to the power connections and heat-break. I used this as a springboard of items to check when assembling my own Ghost 6.
 
@@ -198,9 +199,13 @@ I happened to have a spare Meanwell LRS 350 PSU, from a previous printer, that I
 
 ### Klipper
 
-
-
 Having moved my power supply to the underside of the printer, I could then accommodate a [single board computer](orange_pi_z2.md) to host klipper. I have posted my [Ghost 6 klipper configuration](./klipper.md) for others to use. Please run your own PID, retraction and pressure advance calibration.
+
+Robin Nano 4 `make menuconfig` settings if using UART pins for RX/TX communication:
+
+![image](https://github.com/user-attachments/assets/2c126afc-67fc-41a7-b758-40c68a9d1f23)
+
+To flash your Robin Nano board with klipper, follow the [klipper installation](https://www.klipper3d.org/Installation.html) instructions. After producing a `.bin` file, rename it from `klipper.bin` to `robin_nano_4.bin`. Place the bin file on an SD card and power up your Ghost 6.
 
 ### Bi-metal heat break and hardened nozzle
 
